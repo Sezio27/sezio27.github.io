@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:21st.dev)",
+      "WebSearch",
+      "WebFetch(domain:marketplace.visualstudio.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"portfolio cv resume personal brand timeline career journey\" --design-system -p \"Personal CV\")",
+      "Bash(py .claude/skills/ui-ux-pro-max/scripts/search.py \"portfolio cv resume personal brand timeline career journey\" --design-system -p \"Personal CV\")",
+      "Bash(where python:*)",
+      "Bash(where python3:*)",
+      "Bash(where py:*)",
+      "Bash(C:/Users/mrjak/AppData/Local/Microsoft/WindowsApps/python.exe --version)",
+      "Bash(node -e \":*)",
+      "Bash(node -e \"const d=require\\(''''/dev/stdin'''',''''utf8''''\\); \")",
+      "Bash(node extract-pdf.mjs)",
+      "Bash(node -e \"import\\(''pdf-parse''\\).then\\(m => console.log\\(Object.keys\\(m\\)\\)\\).catch\\(e => console.error\\(e.message\\)\\)\")",
+      "Bash(node -e \"import\\(''pdf-parse''\\).then\\(m => { const p = new m.PDFParse\\({}\\); console.log\\(Object.getOwnPropertyNames\\(Object.getPrototypeOf\\(p\\)\\)\\); }\\)\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npm.cmd)",
+      "Bash(where node:*)",
+      "Bash(sed -i \"s/fontFamily: \"\"''Inter'', sans-serif\"\"/fontFamily: \"\"''Raleway'', sans-serif\"\"/g\" src/components/timeline-demo.tsx)",
+      "Bash(sed -i \"s/fontFamily: \"\"''DM Sans'', sans-serif\"\"/fontFamily: \"\"''Raleway'', sans-serif\"\"/g\" src/components/timeline-demo.tsx)",
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3333)",
+      "Bash(netstat -ano)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(findstr \":3000\")",
+      "Bash(taskkill /PID 3520 /F)",
+      "Bash(cmd /c \"taskkill /PID 3520 /F\")"
+    ]
+  }
+}
