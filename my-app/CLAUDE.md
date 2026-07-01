@@ -6,7 +6,7 @@ This file is automatically read by every Claude Code session and subagent workin
 
 ## Project Overview
 
-A personal CV/portfolio website for **Jakob Suradhet Jacobsen**, a software engineer based in Kongens Lyngby, Denmark. BEng Software Technology graduate from DTU (graduated January 2026). Built with Next.js + shadcn + Tailwind + TypeScript.
+A personal CV/portfolio website for **Jakob Suradhet Jacobsen**, a software engineer based in Kongens Lyngby, Denmark. B.Eng. Software Technology graduate from DTU (graduated January 2026). Built with Next.js + shadcn + Tailwind + TypeScript.
 
 **Live dev server:** `http://localhost:3000`
 **Run:** `cd C:/Projects/First/my-app && npm run dev`
@@ -125,25 +125,30 @@ public/
 - **GitHub:** https://github.com/Sezio27
 
 ### Professional Summary (from CV)
-> Software engineer with experience developing enterprise systems, digital workflows, and modern software applications in collaborative team environments. Strong background in software design, implementation, testing, and maintainability, with hands-on experience in .NET, Microsoft Dynamics 365, Azure, APIs, integrations, and reliable software development. Experienced in prompt engineering, AI evaluation, and the use of AI tools in development workflows and user-facing features.
+> Software engineer with experience across mobile apps, full-stack platforms, enterprise systems, and AI-assisted workflows. Strong foundation in frontend, backend, app architecture, UI/UX, APIs, integrations, testing, and maintainable software design. Motivated by building real-world products that transform complex data into clear, actionable user experiences, especially at the intersection of mobile software, backend systems, and applied AI.
 
 ### Education
-- **BEng Software Technology** — Technical University of Denmark (DTU), Aug 2022 – Jan 2026 ✅ GRADUATED
+- **B.Eng. Software Technology** — Technical University of Denmark (DTU), Aug 2022 – Jan 2026 ✅ GRADUATED
 - **International Academic Exchange Semester** — University of Florida (UF), Gainesville FL, Aug 2023 – Dec 2023
 
 ### Technical Skills (exact from CV)
-- **Programming:** C# ★, Python ★, JavaScript ★, TypeScript, Java, Swift, Kotlin, Dart, SQL
-- **App & Web:** SwiftUI, React, React Native, Flutter, Flask, Node.js, Jetpack Compose, KMP, Vite, Vue, Bootstrap, HTML, CSS
-- **Data:** SQL Server, MariaDB, Firebase/Firestore, Core Data
-- **Dev Tools:** Azure DevOps ★, Git, Gradle, JUnit, Postman, Apache2, SonarQube, VS Code, Eclipse, Android Studio, Xcode
-- **Microsoft & Cloud:** .NET ★, Microsoft Dynamics 365 ★, Azure ★, REST APIs ★, CI/CD ★, Ocelot API Gateway
-- **AI & Automation:** Prompt engineering ★, OpenAI API, AI-assisted development, AI evaluation, workflow automation, GitHub Copilot, ChatGPT
-
-(★ = bolded/primary skill in CV)
+- **Programming — Strong:** TypeScript, JavaScript, Swift, Dart | **Working knowledge:** Python, C#, Java, Kotlin
+- **App & Web — Strong:** React, Node.js, SwiftUI, Flutter, React Native | **Working knowledge:** Flask, Jetpack Compose, KMP, Vite, Vue, Bootstrap, HTML, CSS
+- **Data:** SQL, Firebase/Firestore, Core Data, MariaDB
+- **Dev Tools — Strong:** Git, Xcode, Android Studio, Postman | **Working knowledge:** Docker, Azure DevOps, Gradle, JUnit, Apache2, SonarQube, VS Code, Eclipse, Agile (Scrum)
+- **Microsoft & Cloud — Strong:** REST APIs, CI/CD | **Working knowledge:** .NET, Microsoft Dynamics 365, Ocelot API Gateway
+- **AI & Automation — Strong:** LLM API integration, Agentic AI workflows, AI-assisted development, Claude Code, GitHub Copilot | **Working knowledge:** Prompt engineering, AI evaluation, Workflow automation, ChatGPT
 
 ### Work Experience (newest first)
 
-#### Netcompany — Software Developer
+#### Mycelia Health — Full Stack Developer Intern
+**Jun 2026 – Present** | Full-time
+- Contributing to the design and development of a digital health platform using React, Node.js, and modern full-stack development practices
+- Designing and iterating UI/UX flows for patient journeys, data intake, and platform interactions
+- Working with LLM APIs and agentic AI concepts to explore intelligent workflows for patient data analysis, decision support, and platform automation
+- Contributing to technical planning around system architecture, integrations, secure data handling, and future platform development phases
+
+#### Netcompany — Backend Developer
 **Jan 2024 – Aug 2025** | Full-time
 - Enterprise CRM and case management for public-sector clients (.NET, Microsoft Dynamics 365, Azure)
 - Custom workflows and plugins for bulk letter distribution — template uploads, mail merge, e-Boks delivery, WorkZone journaling

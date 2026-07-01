@@ -398,7 +398,7 @@ export function TimelineDemo() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-white rounded-2xl p-5 shadow-[0_2px_12px_rgba(0,0,0,0.07)]">
-              <p className="text-[#1D1D1F] font-semibold text-sm mb-0.5">BEng Software Technology</p>
+              <p className="text-[#1D1D1F] font-semibold text-sm mb-0.5">B.Eng. Software Technology</p>
               <p className="text-[#5E50E8] text-xs font-medium mb-3">Technical University of Denmark</p>
               <p className="text-[#6E6E73] text-xs mb-1">Aug 2022 – Jan 2026 · Copenhagen, Denmark</p>
               <p className="text-[#3A3A3C] text-xs leading-relaxed">

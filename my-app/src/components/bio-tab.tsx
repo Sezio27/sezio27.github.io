@@ -15,34 +15,29 @@ interface SkillGroup {
 
 const techStack: SkillGroup[] = [
   {
-    category: "Enterprise Backend",
-    descriptor: "Production-tested at scale — this is where Jakob spent 1.5 years in the real world.",
-    items: ["C#", ".NET", "Microsoft Dynamics 365", "Azure", "REST APIs", "Ocelot API Gateway", "CI/CD", "Azure DevOps"],
-   
+    category: "Programming Languages",
+    descriptor: "Strong: TypeScript, JavaScript, Swift, Dart. Working knowledge across enterprise, mobile, and scripting contexts.",
+    items: ["TypeScript", "JavaScript", "Swift", "Dart", "Python", "C#", "Java", "Kotlin", "SQL"],
+  },
+  {
+    category: "App & Web Frameworks",
+    descriptor: "Strong: React, Node.js, SwiftUI, Flutter, React Native. Comfortable across the full stack.",
+    items: ["React", "Node.js", "SwiftUI", "Flutter", "React Native", "Flask", "Jetpack Compose", "KMP", "Vite", "Vue", "Bootstrap", "HTML", "CSS"],
   },
   {
     category: "AI & Automation",
-    descriptor: "Not just a user of AI tools — he evaluated them, engineered prompts for them, and ships products with them.",
-    items: ["Prompt Engineering", "OpenAI API", "AI Evaluation", "GitHub Copilot", "Workflow Automation"],
-   
+    descriptor: "Ships products with LLM APIs and agentic AI — from evaluation and prompt engineering to production health-tech workflows.",
+    items: ["LLM API Integration", "Agentic AI Workflows", "Prompt Engineering", "AI-Assisted Development", "Claude Code", "GitHub Copilot", "AI Evaluation", "Workflow Automation"],
   },
   {
-    category: "Mobile Platforms",
-    descriptor: "iOS, Android, and cross-platform — built and shipped apps on all three.",
-    items: ["SwiftUI", "Kotlin", "Jetpack Compose", "Flutter", "React Native", "Dart", "KMP"],
-  
+    category: "Data & Infrastructure",
+    descriptor: "SQL, Firebase, and cloud services — production-tested at Netcompany with Azure and CI/CD.",
+    items: ["SQL", "Firebase", "Firestore", "Core Data", "MariaDB", "REST APIs", "CI/CD", "Azure DevOps", "Docker"],
   },
   {
-    category: "Web Full-Stack",
-    descriptor: "Comfortable across the full stack — frontend to database to deployment.",
-    items: ["React", "TypeScript", "JavaScript", "Node.js", "Vue", "Flask", "Python", "MariaDB", "SQL Server", "Firebase"],
-  
-  },
-  {
-    category: "Languages",
-    descriptor: "9 languages across enterprise, mobile, and scripting contexts — picks up new ones fast.",
-    items: ["C#", "Python", "JavaScript", "TypeScript", "Swift", "Kotlin", "Dart", "Java", "SQL"],
-  
+    category: "Microsoft & Cloud",
+    descriptor: "1.5 years of enterprise backend at Netcompany with .NET, Dynamics 365, and Azure.",
+    items: [".NET", "C#", "Microsoft Dynamics 365", "Azure", "Ocelot API Gateway"],
   },
 ];
 
@@ -123,15 +118,15 @@ export function BioTab({ isDark }: BioTabProps) {
                 color: text,
               }}
             >
-              Jakob Jacobsen builds software that ships — from enterprise CRM systems handling
-              Danish public-sector data, to AI-powered iOS apps with real-time voice input. At
-              Netcompany, he spent 1.5 years deep in .NET, Microsoft Dynamics 365, and Azure:
-              building custom workflows, modernising data systems for the Danish Health Data
-              Authority, and writing the integrations that connect them. In parallel, he
-              prompt-engineered for Outlier&apos;s AI evaluation programme and is now building
-              StoryLingo — an adaptive language learning app powered by the OpenAI API. BEng
-              Software Technology, DTU, 2026. Fluent across iOS (SwiftUI), Android (Kotlin,
-              Jetpack Compose), and cross-platform (Flutter, React Native).
+              Software engineer with experience across mobile apps, full-stack platforms,
+              enterprise systems, and AI-assisted workflows. Currently building a digital
+              health platform at Mycelia Health using React, Node.js, and LLM APIs. Previously
+              spent 1.5 years at Netcompany working on enterprise CRM and case management
+              systems with .NET, Microsoft Dynamics 365, and Azure. Also building StoryLingo
+              — an AI-powered iOS language learning app with SwiftUI and the OpenAI API.
+              Worked as a freelance AI Prompt Engineer &amp; Reviewer at Outlier, evaluating
+              AI-generated code and designing technical prompts. Three years as a Teaching
+              Assistant at DTU across Java, Python, and mobile app development courses.
             </p>
           </div>
         </motion.section>
@@ -211,7 +206,7 @@ export function BioTab({ isDark }: BioTabProps) {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <EduCard
-              degree="BEng Software Technology"
+              degree="B.Eng. Software Technology"
               school="Technical University of Denmark"
               period="Aug 2022 – Jan 2026"
               location="Kongens Lyngby, Denmark"

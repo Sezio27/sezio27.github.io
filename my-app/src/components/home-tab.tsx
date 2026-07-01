@@ -8,23 +8,24 @@ interface HomeTabProps {
   isDark: boolean;
 }
 
-// ── Work experience data ───────────────────────────────────────────────────────
-interface WorkCard {
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+interface WorkItem {
   id: string;
-  title: string;
+  company: string;
+  role: string;
   period: string;
   description: string;
   tags: string[];
-  gradient: string;
+  accent: string;
 }
 
-interface ProjectCard {
+interface ProjectItem {
   id: string;
   title: string;
-  period?: string;
   description: string;
   tags: string[];
-  gradient: string;
+  accent: string;
   status?: "live" | "in-development" | "grade";
   statusLabel?: string;
   github?: string;
@@ -32,108 +33,114 @@ interface ProjectCard {
   googlePlay?: string;
 }
 
-const WORK_CARDS: WorkCard[] = [
+const WORK: WorkItem[] = [
+  {
+    id: "mycelia",
+    company: "Mycelia Health",
+    role: "Full Stack Developer Intern",
+    period: "Jun 2026 – Present",
+    description:
+      "Contributing to a digital health platform using React, Node.js, and LLM APIs. Designing UI/UX flows for patient journeys and exploring AI-powered workflows for data analysis and platform automation.",
+    tags: ["React", "Node.js", "LLM APIs", "TypeScript"],
+    accent: "#0071E3",
+  },
   {
     id: "netcompany",
-    title: "Enterprise Systems at Scale",
+    company: "Netcompany",
+    role: "Backend Developer",
     period: "Jan 2024 – Aug 2025",
     description:
-      "Built enterprise CRM and case management for public-sector clients — .NET, Microsoft Dynamics 365, Azure. Delivered custom workflows for bulk letter distribution including mail merge, e-Boks delivery, and WorkZone journaling, plus a full modernization of a business-critical system for the Danish Health Data Authority.",
-    tags: [".NET", "Microsoft Dynamics 365", "Azure", "C#", "CI/CD", "REST APIs"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Enterprise CRM and case management for public-sector clients. Built custom workflows for bulk letter distribution and modernized a business-critical system for the Danish Health Data Authority.",
+    tags: [".NET", "Dynamics 365", "Azure", "C#"],
+    accent: "#0071E3",
   },
   {
     id: "outlier",
-    title: "Shaping AI Behavior from the Inside",
+    company: "Outlier",
+    role: "Freelance AI Prompt Engineer",
     period: "May 2024 – Jan 2025",
     description:
-      "Designed and iterated technical prompts for AI evaluation across code generation, debugging, and reasoning — OpenAI models, prompt engineering, AI evaluation. Reviewed AI-generated code for correctness, edge cases, and alignment with task requirements.",
-    tags: ["Prompt Engineering", "AI Evaluation", "Python", "Code Review", "OpenAI"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Designed technical prompts for AI evaluation across code generation and reasoning. Reviewed AI-generated code for correctness, edge cases, and alignment with task requirements.",
+    tags: ["Prompt Engineering", "AI Evaluation", "Python"],
+    accent: "#FF9500",
   },
   {
     id: "pok",
-    title: "NFT Platform Launch — ~100 BSV Week One",
+    company: "Pok.Business",
+    role: "Freelance Frontend Developer",
     period: "Mar 2022 – Dec 2022",
     description:
-      "Built a responsive React web app for NFT showcase and sales with Panda Wallet integration and Bitcoin SV purchase flows — React, Python Flask. Launch generated ~100 BSV in the first week.",
-    tags: ["React", "Python", "Flask", "JavaScript", "REST APIs"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Built a responsive React web app for NFT showcase and sales with Panda Wallet integration and Bitcoin SV purchase flows. Generated ~100 BSV in the first week.",
+    tags: ["React", "Python", "Flask"],
+    accent: "#BF5AF2",
   },
 ];
 
-const PROJECT_CARDS: ProjectCard[] = [
+const PROJECTS: ProjectItem[] = [
   {
     id: "storylingo",
-    title: "AI Language Learning, Driven by Your Voice",
-    period: "Jan 2026 – Present",
+    title: "StoryLingo",
     description:
-      "iOS app that teaches languages through AI-generated stories with live voice input and adaptive vocabulary — SwiftUI, OpenAI API, Core Data. Prompt-engineered context-aware narratives that adjust difficulty in real time based on user proficiency.",
-    tags: ["SwiftUI", "OpenAI API", "Core Data", "MVVM", "Prompt Engineering", "Speech Recognition"],
-    gradient: "linear-gradient(135deg, #5E50E8 0%, #38BDF8 100%)",
+      "AI iOS app that teaches languages through voice-driven stories with adaptive difficulty.",
+    tags: ["SwiftUI", "OpenAI API", "Core Data"],
+    accent: "#30D158",
     status: "in-development",
     statusLabel: "In development",
   },
   {
     id: "diploma",
-    title: "12/12 — Cross-Platform Scheduling App",
-    period: "Sep 2025 – Dec 2025",
+    title: "Aftaler & Regnskab",
     description:
-      "Cross-platform Flutter app built for a professional makeup artist — scheduling, client management, and financial tracking — Flutter, Firebase, MVVM. Awarded 12/12 (Danish top grade) for architecture, code quality, and feature depth.",
-    tags: ["Flutter", "Dart", "Firebase", "Firestore", "MVVM", "Cross-Platform"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Cross-platform Flutter app for a makeup artist — scheduling, clients, financials. Diploma project, grade: 12/12.",
+    tags: ["Flutter", "Firebase", "MVVM"],
+    accent: "#0071E3",
     status: "grade",
     statusLabel: "12/12",
     github: "https://github.com/Sezio27/aftaler_og_regnskab",
   },
   {
     id: "vendee",
-    title: "Live on App Store and Google Play",
+    title: "Vendee",
     description:
-      "React Native app for inventory and payment management inside shared dormitory fridges — React Native, phone-based auth. Ships with role-based user and admin flows; available on both iOS and Android.",
-    tags: ["React Native", "JavaScript", "Firebase", "iOS", "Android"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Inventory and payment app for shared dormitory fridges. Live on App Store and Google Play.",
+    tags: ["React Native", "Firebase"],
+    accent: "#30D158",
     status: "live",
     statusLabel: "Live",
-    appStore: "https://apps.apple.com/dk/app/vendee-virtual-vending-kiosk/id6446119022?l=da",
-    googlePlay: "https://play.google.com/store/apps/details?id=com.vendeeLLC.vendee",
+    appStore:
+      "https://apps.apple.com/dk/app/vendee-virtual-vending-kiosk/id6446119022?l=da",
+    googlePlay:
+      "https://play.google.com/store/apps/details?id=com.vendeeLLC.vendee",
   },
   {
     id: "webshop",
-    title: "Fullstack Grocery Webshop",
+    title: "Grocery Webshop",
     description:
-      "React + TypeScript + Vue.js frontend paired with a Node.js and MariaDB backend, served through Apache HTTP Server reverse proxy — built as a DTU fullstack project. Covered the full stack from UI to database schema.",
-    tags: ["React", "TypeScript", "Vue.js", "Node.js", "MariaDB", "Apache"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Fullstack webshop — React + Vue.js frontend, Node.js + MariaDB backend, Apache reverse proxy.",
+    tags: ["React", "Node.js", "MariaDB"],
+    accent: "#FF9500",
     github: "https://github.com/Sezio27/Backend-62597",
   },
   {
     id: "kind",
-    title: "Subscription Charity on Android",
+    title: "Kind",
     description:
-      "Android app that lets users set up recurring donations to charities — Kotlin, Jetpack Compose, Firebase Realtime Database. Built with MVVM and clean architecture from day one.",
-    tags: ["Kotlin", "Jetpack Compose", "Firebase", "MVVM", "Android"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+      "Android app for recurring charity donations built with Kotlin, Jetpack Compose, and Firebase.",
+    tags: ["Kotlin", "Jetpack Compose", "Firebase"],
+    accent: "#BF5AF2",
     github: "https://github.com/sngp32/Kind",
   },
   {
     id: "memorizer",
-    title: "Memory Games for Android",
-    description:
-      "Kotlin Android app with a suite of memory training games — built as a DTU Software Project in a team environment. Covers standard Android patterns with activities, fragments, and local state management.",
-    tags: ["Kotlin", "Android", "Java", "DTU", "Team Project"],
-    gradient: "linear-gradient(135deg, #38BDF8 0%, #5E50E8 100%)",
+    title: "Memorizer",
+    description: "Android memory training games built in a team at DTU.",
+    tags: ["Kotlin", "Android"],
+    accent: "#FF6B6B",
     github: "https://github.com/moorekevin/DTU-SoftProj-Memorizer",
   },
 ];
 
-const STATS = [
-  { value: "1.5 yrs", label: "at Netcompany" },
-  { value: "2", label: "Apps on Store" },
-  { value: "12/12", label: "Diploma Grade" },
-];
-
-// ── Terminal typewriter panel ─────────────────────────────────────────────────
+// ── Terminal typewriter panel (unchanged) ─────────────────────────────────────
 function TerminalPanel({ isDark }: { isDark: boolean }) {
   const fullName = "Jakob Suradhet Jacobsen";
   const [displayedName, setDisplayedName] = useState("");
@@ -195,13 +202,7 @@ function TerminalPanel({ isDark }: { isDark: boolean }) {
         <span style={{ color: "#38BDF8" }}>&gt; </span>
         <span style={{ color: textColor }}>{displayedName}</span>
         {(typing || !showRole) && (
-          <span
-            style={{
-              opacity: cursorVisible ? 1 : 0,
-              color: "#5E50E8",
-              transition: "opacity 0.1s",
-            }}
-          >
+          <span style={{ opacity: cursorVisible ? 1 : 0, color: "#5E50E8", transition: "opacity 0.1s" }}>
             ▋
           </span>
         )}
@@ -216,13 +217,7 @@ function TerminalPanel({ isDark }: { isDark: boolean }) {
           <span style={{ color: "#38BDF8" }}>&gt; </span>
           <span style={{ color: textColor }}>Role: </span>
           <span style={{ color: "#5E50E8" }}>Software Engineer</span>
-          <span
-            style={{
-              opacity: cursorVisible ? 1 : 0,
-              color: "#5E50E8",
-              transition: "opacity 0.1s",
-            }}
-          >
+          <span style={{ opacity: cursorVisible ? 1 : 0, color: "#5E50E8", transition: "opacity 0.1s" }}>
             ▋
           </span>
         </motion.p>
@@ -231,507 +226,395 @@ function TerminalPanel({ isDark }: { isDark: boolean }) {
   );
 }
 
-// ── Status badge ──────────────────────────────────────────────────────────────
-function StatusBadge({
-  status,
-  label,
-  isDark,
-}: {
-  status: "live" | "in-development" | "grade";
-  label: string;
-  isDark: boolean;
-}) {
-  let bg: string;
-  let border: string;
-  let color: string;
-
-  if (status === "live" || status === "grade") {
-    bg = "rgba(34,197,94,0.18)";
-    border = "rgba(34,197,94,0.30)";
-    color = isDark ? "#4ADE80" : "#22C55E";
-  } else {
-    bg = "rgba(94,80,232,0.20)";
-    border = "rgba(94,80,232,0.35)";
-    color = isDark ? "#8B7EFF" : "#5E50E8";
-  }
-
+// ── Section label ─────────────────────────────────────────────────────────────
+function SectionLabel({ text, isDark }: { text: string; isDark: boolean }) {
   return (
-    <span
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
       style={{
-        position: "absolute",
-        top: "12px",
-        right: "12px",
-        padding: "3px 9px",
-        borderRadius: "999px",
-        background: bg,
-        border: `1px solid ${border}`,
-        color,
         fontFamily: "'Inter', sans-serif",
         fontSize: "10px",
-        fontWeight: 500,
-        whiteSpace: "nowrap",
+        fontWeight: 600,
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+        color: isDark ? "#5A5A70" : "#9090A8",
+        margin: "0 0 16px",
       }}
     >
-      {label}
-    </span>
+      {text}
+    </motion.p>
   );
 }
 
-// ── Work experience card ───────────────────────────────────────────────────────
-function WorkExperienceCard({
-  card,
-  isDark,
-  index,
-}: {
-  card: WorkCard;
-  isDark: boolean;
-  index: number;
-}) {
-  const cardBg = isDark ? "#101018" : "#FFFFFF";
-  const cardBorder = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
+// ── Work row card ─────────────────────────────────────────────────────────────
+function WorkRow({ item, isDark, index }: { item: WorkItem; isDark: boolean; index: number }) {
+  const cardBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.85)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
   const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
-  const textMuted = isDark ? "#A0A0B0" : "#52526A";
-  const tagBg = isDark ? "rgba(139,126,255,0.12)" : "rgba(94,80,232,0.08)";
-  const tagColor = isDark ? "#8B7EFF" : "#5E50E8";
-  const linkHoverColor = isDark ? "#8B7EFF" : "#5E50E8";
+  const textMuted = isDark ? "#8A8A9A" : "#6E6E7A";
+  const tagBg = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)";
+  const tagColor = isDark ? "#A0A0B8" : "#52526A";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{
-        duration: 0.4,
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-        delay: 0.05 * index,
+        duration: 0.45,
+        delay: index * 0.08,
+        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
       }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -2, transition: { duration: 0.15 } }}
       style={{
         background: cardBg,
         border: `1px solid ${cardBorder}`,
-        borderRadius: "16px",
-        overflow: "hidden",
-        boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
-        cursor: "default",
-        transition: "box-shadow 0.2s ease",
-        display: "flex",
-        flexDirection: "column",
+        borderLeft: `3px solid ${item.accent}`,
+        borderRadius: "12px",
+        padding: "20px 24px",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        transition: "box-shadow 0.25s ease",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = isDark
-          ? "0 16px 40px rgba(139,126,255,0.20)"
-          : "0 16px 40px rgba(94,80,232,0.14)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 32px ${item.accent}28`;
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
       }}
     >
-      {/* Gradient header */}
       <div
         style={{
-          height: "112px",
-          background: card.gradient,
-          flexShrink: 0,
-          position: "relative",
-        }}
-      />
-
-      {/* Content */}
-      <div
-        style={{
-          padding: "16px 20px",
           display: "flex",
-          flexDirection: "column",
-          flex: 1,
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          marginBottom: "2px",
+          gap: "12px",
+          flexWrap: "wrap",
         }}
       >
-        <p
+        <span
           style={{
             fontFamily: "'Raleway', sans-serif",
-            fontWeight: 600,
-            fontSize: "14px",
+            fontWeight: 700,
+            fontSize: "15px",
             color: textPrimary,
-            margin: "0 0 2px",
-            lineHeight: 1.3,
           }}
         >
-          {card.title}
-        </p>
-        <p
+          {item.company}
+        </span>
+        <span
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "11px",
             color: textMuted,
-            margin: "0 0 8px",
+            flexShrink: 0,
           }}
         >
-          {card.period}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Raleway', sans-serif",
-            fontWeight: 400,
-            fontSize: "13px",
-            color: textMuted,
-            margin: "0 0 12px",
-            lineHeight: 1.65,
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {card.description}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "4px",
-            marginTop: "auto",
-          }}
-        >
-          {card.tags.map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "10px",
-                padding: "2px 8px",
-                borderRadius: "8px",
-                background: tagBg,
-                color: tagColor,
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+          {item.period}
+        </span>
+      </div>
+
+      <p
+        style={{
+          fontFamily: "'Raleway', sans-serif",
+          fontSize: "12px",
+          color: item.accent,
+          fontWeight: 500,
+          margin: "0 0 10px",
+        }}
+      >
+        {item.role}
+      </p>
+
+      <p
+        style={{
+          fontFamily: "'Raleway', sans-serif",
+          fontSize: "13px",
+          color: textMuted,
+          lineHeight: 1.65,
+          margin: "0 0 14px",
+        }}
+      >
+        {item.description}
+      </p>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+        {item.tags.map((tag) => (
+          <span
+            key={tag}
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "10px",
+              padding: "3px 9px",
+              borderRadius: "6px",
+              background: tagBg,
+              color: tagColor,
+            }}
+          >
+            {tag}
+          </span>
+        ))}
       </div>
     </motion.div>
   );
 }
 
 // ── Project card ──────────────────────────────────────────────────────────────
-function SelectedProjectCard({
-  card,
+function ProjectCard({
+  item,
   isDark,
   index,
 }: {
-  card: ProjectCard;
+  item: ProjectItem;
   isDark: boolean;
   index: number;
 }) {
-  const cardBg = isDark ? "#101018" : "#FFFFFF";
-  const cardBorder = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
+  const cardBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.85)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
   const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
-  const textMuted = isDark ? "#A0A0B0" : "#52526A";
-  const tagBg = isDark ? "rgba(139,126,255,0.12)" : "rgba(94,80,232,0.08)";
-  const tagColor = isDark ? "#8B7EFF" : "#5E50E8";
-  const linkColor = isDark ? "#A0A0B0" : "#52526A";
-  const linkHoverColor = isDark ? "#8B7EFF" : "#5E50E8";
+  const textMuted = isDark ? "#8A8A9A" : "#6E6E7A";
+  const tagBg = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)";
+  const tagColor = isDark ? "#A0A0B8" : "#52526A";
+  const linkColor = isDark ? "#6A6A80" : "#9090A8";
+
+  const isGreen =
+    item.status === "live" || item.status === "grade";
+  const statusStyle = isGreen
+    ? {
+        bg: "rgba(48,209,88,0.14)",
+        border: "rgba(48,209,88,0.28)",
+        text: isDark ? "#34D058" : "#1A9A40",
+      }
+    : {
+        bg: "rgba(94,80,232,0.14)",
+        border: "rgba(94,80,232,0.28)",
+        text: isDark ? "#8B7EFF" : "#5E50E8",
+      };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{
-        duration: 0.4,
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-        delay: 0.05 * index,
+        duration: 0.45,
+        delay: index * 0.06,
+        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
       }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -3, transition: { duration: 0.15 } }}
       style={{
         background: cardBg,
         border: `1px solid ${cardBorder}`,
-        borderRadius: "16px",
-        overflow: "hidden",
-        boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
-        cursor: "default",
-        transition: "box-shadow 0.2s ease",
+        borderRadius: "12px",
+        padding: "18px 20px",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
         display: "flex",
         flexDirection: "column",
+        transition: "box-shadow 0.25s ease",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = isDark
-          ? "0 16px 40px rgba(139,126,255,0.20)"
-          : "0 16px 40px rgba(94,80,232,0.14)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 32px ${item.accent}28`;
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
       }}
     >
-      {/* Gradient header with optional status badge */}
+      {/* Title row */}
       <div
         style={{
-          height: "112px",
-          background: card.gradient,
-          flexShrink: 0,
-          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          marginBottom: "8px",
         }}
       >
-        {card.status && card.statusLabel && (
-          <StatusBadge status={card.status} label={card.statusLabel} isDark={isDark} />
+        <span
+          style={{
+            width: "7px",
+            height: "7px",
+            borderRadius: "50%",
+            background: item.accent,
+            flexShrink: 0,
+          }}
+        />
+        <span
+          style={{
+            fontFamily: "'Raleway', sans-serif",
+            fontWeight: 700,
+            fontSize: "14px",
+            color: textPrimary,
+            flex: 1,
+          }}
+        >
+          {item.title}
+        </span>
+        {item.status && item.statusLabel && (
+          <span
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "10px",
+              fontWeight: 500,
+              padding: "2px 8px",
+              borderRadius: "999px",
+              background: statusStyle.bg,
+              border: `1px solid ${statusStyle.border}`,
+              color: statusStyle.text,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+            }}
+          >
+            {item.statusLabel}
+          </span>
         )}
       </div>
 
-      {/* Content */}
-      <div
+      {/* Description */}
+      <p
         style={{
-          padding: "16px 20px",
-          display: "flex",
-          flexDirection: "column",
+          fontFamily: "'Raleway', sans-serif",
+          fontSize: "12px",
+          color: textMuted,
+          lineHeight: 1.65,
+          margin: "0 0 12px",
           flex: 1,
         }}
       >
-        <p
-          style={{
-            fontFamily: "'Raleway', sans-serif",
-            fontWeight: 600,
-            fontSize: "14px",
-            color: textPrimary,
-            margin: "0 0 2px",
-            lineHeight: 1.3,
-          }}
-        >
-          {card.title}
-        </p>
-        {card.period && (
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "11px",
-              color: textMuted,
-              margin: "0 0 8px",
-            }}
-          >
-            {card.period}
-          </p>
-        )}
-        <p
-          style={{
-            fontFamily: "'Raleway', sans-serif",
-            fontWeight: 400,
-            fontSize: "13px",
-            color: textMuted,
-            margin: card.period ? "0 0 12px" : "8px 0 12px",
-            lineHeight: 1.65,
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {card.description}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "4px",
-            marginTop: "auto",
-          }}
-        >
-          {card.tags.map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "10px",
-                padding: "2px 8px",
-                borderRadius: "8px",
-                background: tagBg,
-                color: tagColor,
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {item.description}
+      </p>
 
-        {/* Links */}
-        {(card.github || card.appStore || card.googlePlay) && (
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "10px",
-              marginTop: "10px",
-            }}
-          >
-            {card.github && (
-              <a
-                href={card.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "11px",
-                  color: linkColor,
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "3px",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = linkHoverColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = linkColor;
-                }}
-              >
-                <ExternalLink size={10} />
-                GitHub
-              </a>
-            )}
-            {card.appStore && (
-              <a
-                href={card.appStore}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "11px",
-                  color: linkColor,
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "3px",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = linkHoverColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = linkColor;
-                }}
-              >
-                <ExternalLink size={10} />
-                App Store
-              </a>
-            )}
-            {card.googlePlay && (
-              <a
-                href={card.googlePlay}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "11px",
-                  color: linkColor,
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "3px",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = linkHoverColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = linkColor;
-                }}
-              >
-                <ExternalLink size={10} />
-                Google Play
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
-// ── Section heading ───────────────────────────────────────────────────────────
-function SectionHeading({
-  title,
-  isDark,
-}: {
-  title: string;
-  isDark: boolean;
-}) {
-  const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 30 }}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-        marginBottom: "24px",
-      }}
-    >
+      {/* Tags */}
       <div
         style={{
-          width: "3px",
-          height: "28px",
-          background: "linear-gradient(to bottom, #5E50E8, #38BDF8)",
-          borderRadius: "2px",
-          flexShrink: 0,
-        }}
-      />
-      <h2
-        style={{
-          fontFamily: "'Raleway', sans-serif",
-          fontWeight: 600,
-          fontSize: "26px",
-          color: textPrimary,
-          margin: 0,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "4px",
+          marginBottom:
+            item.github || item.appStore || item.googlePlay ? "10px" : "0",
         }}
       >
-        {title}
-      </h2>
+        {item.tags.map((tag) => (
+          <span
+            key={tag}
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "10px",
+              padding: "2px 8px",
+              borderRadius: "6px",
+              background: tagBg,
+              color: tagColor,
+            }}
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Links */}
+      {(item.github || item.appStore || item.googlePlay) && (
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          {item.github && (
+            <a
+              href={item.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "11px",
+                color: linkColor,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "3px",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = item.accent)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = linkColor)}
+            >
+              <ExternalLink size={10} />
+              GitHub
+            </a>
+          )}
+          {item.appStore && (
+            <a
+              href={item.appStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "11px",
+                color: linkColor,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "3px",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = item.accent)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = linkColor)}
+            >
+              <ExternalLink size={10} />
+              App Store
+            </a>
+          )}
+          {item.googlePlay && (
+            <a
+              href={item.googlePlay}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "11px",
+                color: linkColor,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "3px",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = item.accent)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = linkColor)}
+            >
+              <ExternalLink size={10} />
+              Google Play
+            </a>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }
 
-// ── Main HomeTab export ───────────────────────────────────────────────────────
+// ── Main export ───────────────────────────────────────────────────────────────
 export function HomeTab({ isDark }: HomeTabProps) {
-  const bg = isDark ? "#09090E" : "#F7F7FB";
   const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
   const textSecondary = isDark ? "#A0A0B0" : "#52526A";
-  const textTertiary = isDark ? "#5A5A70" : "#9090A8";
-  const statBorder = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
-  const statBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)";
-  const ctaGhostBorder = isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)";
+  const ctaGhostBorder = isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.12)";
   const ctaAccent = isDark ? "#8B7EFF" : "#5E50E8";
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: bg,
-        fontFamily: "'Raleway', sans-serif",
-        transition: "background 0.3s ease",
-      }}
-    >
+    <div style={{ minHeight: "100vh", fontFamily: "'Raleway', sans-serif" }}>
+
       {/* ── Hero ── */}
       <section
         style={{
-          maxWidth: "720px",
+          maxWidth: "680px",
           margin: "0 auto",
-          padding: "72px 24px 56px",
+          padding: "64px 24px 72px",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "28px",
+          gap: "24px",
         }}
       >
         <TerminalPanel isDark={isDark} />
 
-        {/* Headline */}
-        <motion.div
+        <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -739,65 +622,72 @@ export function HomeTab({ isDark }: HomeTabProps) {
             delay: 0.8,
             ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
           }}
-          style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+          style={{
+            fontFamily: "'Raleway', sans-serif",
+            fontWeight: 600,
+            fontSize: "clamp(28px, 5vw, 52px)",
+            lineHeight: 1.15,
+            color: textPrimary,
+            margin: 0,
+          }}
         >
-          <h1
+          Software engineer.{" "}
+          <span
             style={{
-              fontFamily: "'Raleway', sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(32px, 5vw, 58px)",
-              lineHeight: 1.1,
-              color: textPrimary,
-              margin: 0,
+              background: "linear-gradient(135deg, #5E50E8 0%, #38BDF8 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
             }}
           >
-            Enterprise engineer.{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #5E50E8 0%, #38BDF8 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              AI builder.
-            </span>
-            <br />
-            Ships on every platform.
-          </h1>
-          <p
-            style={{
-              fontFamily: "'Raleway', sans-serif",
-              fontWeight: 400,
-              fontSize: "16px",
-              lineHeight: 1.7,
-              color: textSecondary,
-              maxWidth: "540px",
-              margin: "0 auto",
-            }}
-          >
-            DTU-trained software engineer with 1.5 years building production systems at
-            Netcompany — .NET, Dynamics 365, Azure. Also ships iOS apps, cross-platform
-            mobile, and AI-powered features from scratch.
-          </p>
-        </motion.div>
+            AI builder.
+          </span>{" "}
+          Builds for mobile and web.
+        </motion.h1>
 
-        {/* CTA buttons */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 1.1 }}
+          style={{
+            fontFamily: "'Raleway', sans-serif",
+            fontWeight: 400,
+            fontSize: "15px",
+            lineHeight: 1.75,
+            color: textSecondary,
+            maxWidth: "460px",
+            margin: 0,
+          }}
+        >
+          B.Eng. Software Technology from DTU. 1.5 years at Netcompany
+          building enterprise systems. Currently building a digital health
+          platform at Mycelia Health with React, Node.js, and AI. Uses
+          AI daily in development with Claude and Copilot. Passionate
+          about mobile development — shipped apps on both the App Store and
+          Google Play, and fluent across iOS (SwiftUI), Android (Kotlin),
+          and cross-platform (Flutter, React Native).
+        </motion.p>
+
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 1.2 }}
-          style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}
+          transition={{ duration: 0.4, delay: 1.3 }}
+          style={{
+            display: "flex",
+            gap: "10px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
           <button
             onClick={() =>
-              document.getElementById("work-experience")?.scrollIntoView({ behavior: "smooth" })
+              document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
             }
             style={{
               fontFamily: "'Raleway', sans-serif",
               fontWeight: 600,
-              fontSize: "14px",
-              padding: "12px 28px",
+              fontSize: "13px",
+              padding: "10px 26px",
               borderRadius: "10px",
               background: isDark ? "#8B7EFF" : "#5E50E8",
               color: "#FFFFFF",
@@ -807,9 +697,7 @@ export function HomeTab({ isDark }: HomeTabProps) {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = isDark
-                ? "0 6px 20px rgba(139,126,255,0.35)"
-                : "0 6px 20px rgba(94,80,232,0.35)";
+              e.currentTarget.style.boxShadow = "0 6px 20px rgba(94,80,232,0.35)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "";
@@ -823,16 +711,15 @@ export function HomeTab({ isDark }: HomeTabProps) {
             style={{
               fontFamily: "'Raleway', sans-serif",
               fontWeight: 500,
-              fontSize: "14px",
-              padding: "12px 28px",
+              fontSize: "13px",
+              padding: "10px 26px",
               borderRadius: "10px",
               background: "transparent",
               color: textSecondary,
               border: `1px solid ${ctaGhostBorder}`,
-              cursor: "pointer",
               textDecoration: "none",
-              transition: "border-color 0.2s, color 0.2s",
               display: "inline-block",
+              transition: "border-color 0.2s ease, color 0.2s ease",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = ctaAccent;
@@ -846,123 +733,43 @@ export function HomeTab({ isDark }: HomeTabProps) {
             Let&apos;s talk
           </a>
         </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 1.5 }}
-          style={{
-            display: "flex",
-            background: statBg,
-            border: `1px solid ${statBorder}`,
-            borderRadius: "12px",
-            overflow: "hidden",
-          }}
-        >
-          {STATS.map((stat, i) => (
-            <div
-              key={stat.label}
-              style={{
-                padding: "14px 24px",
-                textAlign: "center",
-                borderRight: i < STATS.length - 1 ? `1px solid ${statBorder}` : "none",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  color: textPrimary,
-                  lineHeight: 1.2,
-                }}
-              >
-                {stat.value}
-              </div>
-              <div
-                style={{
-                  fontFamily: "'Raleway', sans-serif",
-                  fontWeight: 400,
-                  fontSize: "10px",
-                  color: textTertiary,
-                  marginTop: "2px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </section>
 
       {/* ── Work Experience ── */}
       <section
-        id="work-experience"
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 24px 64px",
-        }}
+        id="work"
+        style={{ maxWidth: "860px", margin: "0 auto", padding: "0 24px 64px" }}
       >
-        <SectionHeading title="Work Experience" isDark={isDark} />
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(1, 1fr)",
-            gap: "16px",
-          }}
-          className="work-grid"
-        >
-          {WORK_CARDS.map((card, index) => (
-            <WorkExperienceCard key={card.id} card={card} isDark={isDark} index={index} />
+        <SectionLabel text="Work Experience" isDark={isDark} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {WORK.map((item, i) => (
+            <WorkRow key={item.id} item={item} isDark={isDark} index={i} />
           ))}
         </div>
       </section>
 
       {/* ── Selected Projects ── */}
       <section
-        id="selected-projects"
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 24px 80px",
-        }}
+        id="projects"
+        style={{ maxWidth: "860px", margin: "0 auto", padding: "0 24px 80px" }}
       >
-        <SectionHeading title="Selected Projects" isDark={isDark} />
+        <SectionLabel text="Selected Projects" isDark={isDark} />
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(1, 1fr)",
-            gap: "16px",
-          }}
-          className="projects-grid"
+          style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "10px" }}
+          className="proj-grid"
         >
-          {PROJECT_CARDS.map((card, index) => (
-            <SelectedProjectCard key={card.id} card={card} isDark={isDark} index={index} />
+          {PROJECTS.map((item, i) => (
+            <ProjectCard key={item.id} item={item} isDark={isDark} index={i} />
           ))}
         </div>
       </section>
 
-      {/* Responsive grid styles */}
       <style>{`
-        @media (min-width: 768px) {
-          .work-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-          .projects-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
+        @media (min-width: 600px) {
+          .proj-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @media (min-width: 1280px) {
-          .work-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-          }
-          .projects-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-          }
+        @media (min-width: 960px) {
+          .proj-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
       `}</style>
     </div>

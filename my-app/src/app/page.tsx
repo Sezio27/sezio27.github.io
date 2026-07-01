@@ -11,7 +11,7 @@ import { HomeTab } from "@/components/home-tab";
 const TABS = [
   { id: "home", label: "Home" },
   { id: "bio", label: "Bio" },
-  { id: "journey", label: "Journey" },
+  { id: "journey", label: "Resume / Journey" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
