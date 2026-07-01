@@ -143,7 +143,7 @@ function ContactStrip({ isDark }: { isDark: boolean }) {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function Page() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [activeTab, setActiveTab] = useState<TabId>("home");
 
   const headerBg = isDark ? "rgba(10,10,15,0.85)" : "rgba(248,248,252,0.85)";
@@ -172,7 +172,7 @@ export default function Page() {
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
           borderBottom: `1px solid ${headerBorder}`,
-          height: "56px",
+          height: "64px",
           transition: "background 0.3s ease, border-color 0.3s ease",
         }}
       >
@@ -211,7 +211,7 @@ export default function Page() {
                   lineHeight: 1,
                 }}
               >
-                JJ
+                JSJ
               </span>
             </div>
             <span
@@ -223,7 +223,7 @@ export default function Page() {
                 transition: "color 0.3s ease",
               }}
             >
-              Jakob Jacobsen
+              Jakob Suradhet Jacobsen
             </span>
             {/* Available dot */}
             <div
@@ -355,9 +355,9 @@ export default function Page() {
       </header>
 
       {/* ── Content area ── */}
-      <div style={{ paddingTop: "56px", position: "relative", zIndex: 2, display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div style={{ paddingTop: "64px", position: "relative", zIndex: 2, display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <div style={{ flex: 1 }}>
-          {activeTab === "home" && <HomeTab isDark={isDark} />}
+          {activeTab === "home" && <HomeTab isDark={isDark} onNavigate={(tab) => setActiveTab(tab as TabId)} />}
           {activeTab === "bio" && <BioTab isDark={isDark} />}
           {activeTab === "journey" && <JourneyTab isDark={isDark} />}
         </div>

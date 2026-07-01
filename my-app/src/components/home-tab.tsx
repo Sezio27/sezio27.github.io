@@ -6,6 +6,7 @@ import { ExternalLink } from "lucide-react";
 
 interface HomeTabProps {
   isDark: boolean;
+  onNavigate?: (tab: string) => void;
 }
 
 // ── Data ──────────────────────────────────────────────────────────────────────
@@ -168,8 +169,8 @@ function TerminalPanel({ isDark }: { isDark: boolean }) {
     return () => clearInterval(blinkTimer);
   }, []);
 
-  const panelBg = isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)";
-  const panelBorder = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.08)";
+  const panelBg = isDark ? "rgba(17,17,24,0.80)" : "rgba(0,0,0,0.03)";
+  const panelBorder = isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)";
   const commentColor = isDark ? "#5A5A70" : "#9090A8";
   const promptColor = isDark ? "#A0A0B0" : "#52526A";
   const textColor = isDark ? "#F0F0F5" : "#0D0D18";
@@ -251,8 +252,8 @@ function SectionLabel({ text, isDark }: { text: string; isDark: boolean }) {
 
 // ── Work row card ─────────────────────────────────────────────────────────────
 function WorkRow({ item, isDark, index }: { item: WorkItem; isDark: boolean; index: number }) {
-  const cardBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.85)";
-  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
+  const cardBg = isDark ? "rgba(17,17,24,0.85)" : "rgba(255,255,255,0.85)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.07)";
   const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
   const textMuted = isDark ? "#8A8A9A" : "#6E6E7A";
   const tagBg = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)";
@@ -373,8 +374,8 @@ function ProjectCard({
   isDark: boolean;
   index: number;
 }) {
-  const cardBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.85)";
-  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
+  const cardBg = isDark ? "rgba(17,17,24,0.85)" : "rgba(255,255,255,0.85)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.07)";
   const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
   const textMuted = isDark ? "#8A8A9A" : "#6E6E7A";
   const tagBg = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)";
@@ -590,14 +591,15 @@ function ProjectCard({
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────
-export function HomeTab({ isDark }: HomeTabProps) {
+export function HomeTab({ isDark, onNavigate }: HomeTabProps) {
+  const bg = isDark ? "rgba(10,10,15,0.80)" : "rgba(248,248,252,0.80)";
   const textPrimary = isDark ? "#F0F0F5" : "#0D0D18";
-  const textSecondary = isDark ? "#A0A0B0" : "#52526A";
+  const textSecondary = isDark ? "#A0A0B0" : "#3A3A52";
   const ctaGhostBorder = isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.12)";
   const ctaAccent = isDark ? "#8B7EFF" : "#5E50E8";
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "'Raleway', sans-serif" }}>
+    <div style={{ minHeight: "100vh", fontFamily: "'Raleway', sans-serif", background: bg, transition: "background 0.3s ease" }}>
 
       {/* ── Hero ── */}
       <section
@@ -679,59 +681,47 @@ export function HomeTab({ isDark }: HomeTabProps) {
             justifyContent: "center",
           }}
         >
-          <button
-            onClick={() =>
-              document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
-            }
-            style={{
-              fontFamily: "'Raleway', sans-serif",
-              fontWeight: 600,
-              fontSize: "13px",
-              padding: "10px 26px",
-              borderRadius: "10px",
-              background: isDark ? "#8B7EFF" : "#5E50E8",
-              color: "#FFFFFF",
-              border: "none",
-              cursor: "pointer",
-              transition: "transform 0.15s ease, box-shadow 0.15s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "0 6px 20px rgba(94,80,232,0.35)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "";
-              e.currentTarget.style.boxShadow = "";
-            }}
-          >
-            See the work
-          </button>
-          <a
-            href="mailto:jacobsen.js@hotmail.com"
-            style={{
-              fontFamily: "'Raleway', sans-serif",
-              fontWeight: 500,
-              fontSize: "13px",
-              padding: "10px 26px",
-              borderRadius: "10px",
-              background: "transparent",
-              color: textSecondary,
-              border: `1px solid ${ctaGhostBorder}`,
-              textDecoration: "none",
-              display: "inline-block",
-              transition: "border-color 0.2s ease, color 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = ctaAccent;
-              e.currentTarget.style.color = ctaAccent;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = ctaGhostBorder;
-              e.currentTarget.style.color = textSecondary;
-            }}
-          >
-            Let&apos;s talk
-          </a>
+          {[
+            { label: "See my bio", tab: "bio" },
+            { label: "See my resume", tab: "journey" },
+          ].map((btn) => (
+            <button
+              key={btn.tab}
+              onClick={() => onNavigate?.(btn.tab)}
+              style={{
+                fontFamily: "'Raleway', sans-serif",
+                fontWeight: 600,
+                fontSize: "14px",
+                padding: "10px 26px",
+                borderRadius: "10px",
+                background: isDark
+                  ? "linear-gradient(135deg, rgba(94,80,232,0.18) 0%, rgba(56,189,248,0.12) 100%)"
+                  : "linear-gradient(135deg, rgba(94,80,232,0.10) 0%, rgba(56,189,248,0.06) 100%)",
+                color: isDark ? "#C4BDFF" : "#5E50E8",
+                border: `1px solid ${isDark ? "rgba(139,126,255,0.20)" : "rgba(94,80,232,0.15)"}`,
+                cursor: "pointer",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                transition: "transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.boxShadow = "0 6px 20px rgba(94,80,232,0.25)";
+                e.currentTarget.style.background = isDark
+                  ? "linear-gradient(135deg, rgba(94,80,232,0.28) 0%, rgba(56,189,248,0.20) 100%)"
+                  : "linear-gradient(135deg, rgba(94,80,232,0.16) 0%, rgba(56,189,248,0.10) 100%)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "";
+                e.currentTarget.style.boxShadow = "";
+                e.currentTarget.style.background = isDark
+                  ? "linear-gradient(135deg, rgba(94,80,232,0.18) 0%, rgba(56,189,248,0.12) 100%)"
+                  : "linear-gradient(135deg, rgba(94,80,232,0.10) 0%, rgba(56,189,248,0.06) 100%)";
+              }}
+            >
+              {btn.label}
+            </button>
+          ))}
         </motion.div>
       </section>
 

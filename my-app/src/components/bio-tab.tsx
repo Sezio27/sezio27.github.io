@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { IkigaiDiagram } from "@/components/ikigai-diagram";
 
 interface BioTabProps {
   isDark: boolean;
@@ -53,7 +54,7 @@ const fadeUp = (delay = 0) => ({
 });
 
 export function BioTab({ isDark }: BioTabProps) {
-  const bg = isDark ? "#0A0A0F" : "#F8F8FC";
+  const bg = isDark ? "rgba(10,10,15,0.80)" : "rgba(248,248,252,0.80)";
   const cardBg = isDark ? "#111118" : "#FFFFFF";
   const text = isDark ? "#F0F0F5" : "#0D0D18";
   const muted = isDark ? "#A0A0B0" : "#52526A";
@@ -109,25 +110,37 @@ export function BioTab({ isDark }: BioTabProps) {
                 alignSelf: "stretch",
               }}
             />
-            <p
+            <div
               style={{
                 fontFamily: "'Raleway', sans-serif",
                 fontWeight: 400,
                 fontSize: "15px",
                 lineHeight: "1.8",
                 color: text,
+                display: "flex",
+                flexDirection: "column",
+                gap: "14px",
               }}
             >
-              Software engineer with experience across mobile apps, full-stack platforms,
-              enterprise systems, and AI-assisted workflows. Currently building a digital
-              health platform at Mycelia Health using React, Node.js, and LLM APIs. Previously
-              spent 1.5 years at Netcompany working on enterprise CRM and case management
-              systems with .NET, Microsoft Dynamics 365, and Azure. Also building StoryLingo
-              — an AI-powered iOS language learning app with SwiftUI and the OpenAI API.
-              Worked as a freelance AI Prompt Engineer &amp; Reviewer at Outlier, evaluating
-              AI-generated code and designing technical prompts. Three years as a Teaching
-              Assistant at DTU across Java, Python, and mobile app development courses.
-            </p>
+              <p style={{ margin: 0 }}>
+                Software engineer with experience across mobile apps, full-stack platforms,
+                enterprise systems, and AI-assisted workflows.
+              </p>
+              <p style={{ margin: 0 }}>
+                Currently building a digital health platform at Mycelia Health using React,
+                Node.js, and LLM APIs. Also building StoryLingo — an AI-powered iOS language
+                learning app with SwiftUI and the OpenAI API.
+              </p>
+              <p style={{ margin: 0 }}>
+                Previously spent 1.5 years at Netcompany working on enterprise CRM and case
+                management systems with .NET, Microsoft Dynamics 365, and Azure.
+              </p>
+              <p style={{ margin: 0 }}>
+                Worked as a freelance AI Prompt Engineer &amp; Reviewer at Outlier, evaluating
+                AI-generated code and designing technical prompts. Three years as a Teaching
+                Assistant at DTU across Java, Python, and mobile app development courses.
+              </p>
+            </div>
           </div>
         </motion.section>
 
@@ -156,7 +169,7 @@ export function BioTab({ isDark }: BioTabProps) {
                     style={{
                       fontFamily: "'Raleway', sans-serif",
                       fontWeight: 600,
-                      fontSize: "13px",
+                      fontSize: "15px",
                       color: text,
                       marginBottom: "3px",
                     }}
@@ -167,7 +180,7 @@ export function BioTab({ isDark }: BioTabProps) {
                     style={{
                       fontFamily: "'Raleway', sans-serif",
                       fontWeight: 400,
-                      fontSize: "11px",
+                      fontSize: "13px",
                       color: muted,
                     }}
                   >
@@ -233,6 +246,20 @@ export function BioTab({ isDark }: BioTabProps) {
           </div>
         </motion.section>
 
+
+      </div>
+
+      {/* ── Ikigai — wider container ── */}
+      <div className="max-w-6xl mx-auto px-6 pb-12">
+        <motion.section {...fadeUp(0.15)}>
+          <p
+            className="text-xs font-semibold uppercase tracking-widest mb-5"
+            style={{ color: tertiary, fontFamily: "'Raleway', sans-serif" }}
+          >
+            Ikigai
+          </p>
+          <IkigaiDiagram isDark={isDark} />
+        </motion.section>
       </div>
     </div>
   );
@@ -261,13 +288,13 @@ function SkillPill({
       className="cursor-default transition-all duration-200"
       style={{
         display: "inline-block",
-        padding: "3px 10px",
+        padding: "4px 12px",
         borderRadius: "999px",
         background: pillBg,
         border: `1px solid ${pillBorder}`,
         fontFamily:"'Raleway', sans-serif",
         fontWeight: 400,
-        fontSize: "11px",
+        fontSize: "13px",
         color: pillText,
         transition: "background 0.2s ease, color 0.2s ease, border-color 0.2s ease",
       }}
@@ -330,7 +357,7 @@ function EduCard({
           style={{
             fontFamily: "'Raleway', sans-serif",
             fontWeight: 600,
-            fontSize: "13px",
+            fontSize: "15px",
             color: text,
             margin: 0,
           }}
@@ -341,7 +368,7 @@ function EduCard({
           <span
             style={{
               fontFamily: "'Inter', monospace",
-              fontSize: "9px",
+              fontSize: "11px",
               fontWeight: 500,
               padding: "2px 8px",
               borderRadius: "999px",
@@ -360,7 +387,7 @@ function EduCard({
         style={{
           fontFamily: "'Raleway', sans-serif",
           fontWeight: 500,
-          fontSize: "12px",
+          fontSize: "14px",
           color: accent,
           marginBottom: "10px",
         }}
@@ -371,7 +398,7 @@ function EduCard({
         style={{
           fontFamily: "'Inter', monospace",
           fontWeight: 400,
-          fontSize: "11px",
+          fontSize: "13px",
           color: muted,
           marginBottom: "2px",
         }}
@@ -382,7 +409,7 @@ function EduCard({
         style={{
           fontFamily: "'Raleway', sans-serif",
           fontWeight: 400,
-          fontSize: "11px",
+          fontSize: "13px",
           color: muted,
         }}
       >

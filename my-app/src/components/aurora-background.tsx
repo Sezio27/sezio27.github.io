@@ -146,18 +146,19 @@ export function AuroraBackground({ isDark }: AuroraBackgroundProps) {
       {/* Canvas mount point */}
       <div ref={containerRef} style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }} />
 
-      {/* Light mode overlay to tone down the aurora */}
-      {!isDark && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 1,
-            pointerEvents: "none",
-            background: "rgba(245, 245, 247, 0.82)",
-          }}
-        />
-      )}
+      {/* Overlay to tone down the aurora — light: frosted white, dark: deep tint */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          background: isDark
+            ? "rgba(0, 0, 10, 0.55)"
+            : "rgba(245, 245, 247, 0.45)",
+          transition: "background 0.3s ease",
+        }}
+      />
     </>
   );
 }

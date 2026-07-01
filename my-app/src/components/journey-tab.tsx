@@ -26,7 +26,7 @@ interface EntryProps {
   period?: string;
   bullets?: React.ReactNode[];
   tags?: string[];
-  links?: { url: string; label: string; type: "github" | "appstore" | "youtube" }[];
+  links?: { url: string; label: string; type: "github" | "appstore" | "googleplay" | "youtube" }[];
   accent?: string;
   gallery?: React.ReactNode;
   images?: { src: string; alt: string }[];
@@ -56,6 +56,14 @@ function YoutubeIcon({ size = 14 }: { size?: number }) {
   );
 }
 
+function GooglePlayIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.585 1.493a1 1 0 010 1.733l-2.585 1.493-2.536-2.536 2.536-2.183zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
+    </svg>
+  );
+}
+
 function Entry({
   isDark,
   role,
@@ -76,8 +84,9 @@ function Entry({
   const tagBorder = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.08)";
   const tagText = isDark ? "rgba(245,245,247,0.72)" : "#5A5A5F";
 
-  const periodBg = isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)";
-  const periodBorder = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.07)";
+  const periodBg = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.06)";
+  const periodBorder = isDark ? "rgba(255,255,255,0.16)" : "rgba(0,0,0,0.12)";
+  const periodColor = isDark ? "rgba(245,245,247,0.82)" : "#3A3A3C";
 
   return (
     <div
@@ -102,7 +111,7 @@ function Entry({
             style={{
               fontFamily: "'Raleway', sans-serif",
               fontWeight: 600,
-              fontSize: 16,
+              fontSize: 17,
               color: textPrimary,
               margin: 0,
               lineHeight: 1.3,
@@ -116,7 +125,7 @@ function Entry({
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 500,
-              fontSize: 13,
+              fontSize: 14,
               color: accent,
               margin: "4px 0 0",
               lineHeight: 1.35,
@@ -141,12 +150,12 @@ function Entry({
             <span
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-                fontSize: 11,
-                color: textMuted,
+                fontWeight: 600,
+                fontSize: 12,
+                color: periodColor,
                 background: periodBg,
                 border: `1px solid ${periodBorder}`,
-                padding: "4px 10px",
+                padding: "5px 12px",
                 borderRadius: 999,
                 whiteSpace: "nowrap",
               }}
@@ -155,32 +164,11 @@ function Entry({
             </span>
           )}
 
-          {links.length > 0 && links.map((l) => {
-            const icon =
-              l.type === "github" ? <GithubIcon size={14} /> :
-              l.type === "appstore" ? <AppleIcon size={14} /> :
-              <YoutubeIcon size={14} />;
-
-            const btnBg =
-              l.type === "github" ? (isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)") :
-              l.type === "appstore" ? (isDark ? "rgba(0,113,227,0.20)" : "rgba(0,113,227,0.10)") :
-              isDark ? "rgba(255,0,0,0.15)" : "rgba(255,0,0,0.08)";
-
-            const btnBorder =
-              l.type === "github" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)") :
-              l.type === "appstore" ? (isDark ? "rgba(0,113,227,0.35)" : "rgba(0,113,227,0.25)") :
-              isDark ? "rgba(255,0,0,0.30)" : "rgba(255,0,0,0.20)";
-
-            const btnColor =
-              l.type === "github" ? (isDark ? "#E0E0E8" : "#24292f") :
-              l.type === "appstore" ? "#0071E3" :
-              isDark ? "#FF4444" : "#CC0000";
-
-            const hoverBg =
-              l.type === "github" ? (isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.10)") :
-              l.type === "appstore" ? (isDark ? "rgba(0,113,227,0.30)" : "rgba(0,113,227,0.18)") :
-              isDark ? "rgba(255,0,0,0.25)" : "rgba(255,0,0,0.14)";
-
+          {links.filter((l) => l.type === "github").map((l) => {
+            const btnBg = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)";
+            const btnBorder = isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)";
+            const btnColor = isDark ? "#E0E0E8" : "#24292f";
+            const hoverBg = isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.10)";
             return (
               <a
                 key={l.url}
@@ -197,24 +185,21 @@ function Entry({
                   border: `1px solid ${btnBorder}`,
                   fontFamily: "'Raleway', sans-serif",
                   fontWeight: 600,
-                  fontSize: 11,
+                  fontSize: 12,
                   color: btnColor,
                   textDecoration: "none",
                   transition: "background 0.2s, border-color 0.2s",
                   whiteSpace: "nowrap",
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = hoverBg;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = btnBg;
-                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = hoverBg; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = btnBg; }}
               >
-                {icon}
+                <GithubIcon size={14} />
                 <span>{l.label}</span>
               </a>
             );
           })}
+
         </div>
       </div>
 
@@ -238,7 +223,7 @@ function Entry({
                 gap: 8,
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
-                fontSize: 14,
+                fontSize: 15,
                 color: textBody,
                 lineHeight: 1.72,
                 letterSpacing: "-0.01em",
@@ -249,7 +234,7 @@ function Entry({
                   color: accent,
                   flexShrink: 0,
                   marginTop: 1,
-                  fontSize: 16,
+                  fontSize: 17,
                   lineHeight: 1,
                 }}
               >
@@ -259,6 +244,77 @@ function Entry({
             </li>
           ))}
         </ul>
+      )}
+
+      {/* Links */}
+      {links.filter((l) => l.type !== "github").length > 0 && (
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 16, marginBottom: 16 }}>
+          {links.filter((l) => l.type !== "github").map((l) => {
+            const icon =
+              l.type === "github" ? <GithubIcon size={14} /> :
+              l.type === "appstore" ? <AppleIcon size={14} /> :
+              l.type === "googleplay" ? <GooglePlayIcon size={14} /> :
+              <YoutubeIcon size={14} />;
+
+            const btnBg =
+              l.type === "github" ? (isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)") :
+              l.type === "appstore" ? (isDark ? "rgba(0,113,227,0.20)" : "rgba(0,113,227,0.10)") :
+              l.type === "googleplay" ? (isDark ? "rgba(48,209,88,0.20)" : "rgba(48,209,88,0.10)") :
+              isDark ? "rgba(255,0,0,0.15)" : "rgba(255,0,0,0.08)";
+
+            const btnBorder =
+              l.type === "github" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)") :
+              l.type === "appstore" ? (isDark ? "rgba(0,113,227,0.35)" : "rgba(0,113,227,0.25)") :
+              l.type === "googleplay" ? (isDark ? "rgba(48,209,88,0.35)" : "rgba(48,209,88,0.25)") :
+              isDark ? "rgba(255,0,0,0.30)" : "rgba(255,0,0,0.20)";
+
+            const btnColor =
+              l.type === "github" ? (isDark ? "#E0E0E8" : "#24292f") :
+              l.type === "appstore" ? "#0071E3" :
+              l.type === "googleplay" ? "#30D158" :
+              isDark ? "#FF4444" : "#CC0000";
+
+            const hoverBg =
+              l.type === "github" ? (isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.10)") :
+              l.type === "appstore" ? (isDark ? "rgba(0,113,227,0.30)" : "rgba(0,113,227,0.18)") :
+              l.type === "googleplay" ? (isDark ? "rgba(48,209,88,0.30)" : "rgba(48,209,88,0.18)") :
+              isDark ? "rgba(255,0,0,0.25)" : "rgba(255,0,0,0.14)";
+
+            return (
+              <a
+                key={l.url}
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "5px 12px",
+                  borderRadius: 999,
+                  background: btnBg,
+                  border: `1px solid ${btnBorder}`,
+                  fontFamily: "'Raleway', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: btnColor,
+                  textDecoration: "none",
+                  transition: "background 0.2s, border-color 0.2s",
+                  whiteSpace: "nowrap",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = hoverBg;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = btnBg;
+                }}
+              >
+                {icon}
+                <span>{l.label}</span>
+              </a>
+            );
+          })}
+        </div>
       )}
 
       {/* Basic images (e.g. UF exchange) */}
@@ -290,6 +346,9 @@ function Entry({
         </div>
       )}
 
+      {/* Gallery */}
+      {gallery && <div style={{ marginTop: 20, marginBottom: 20 }}>{gallery}</div>}
+
       {/* Tags */}
       {tags.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -299,7 +358,7 @@ function Entry({
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
-                fontSize: 11,
+                fontSize: 12,
                 color: tagText,
                 background: tagBg,
                 border: `1px solid ${tagBorder}`,
@@ -312,9 +371,6 @@ function Entry({
           ))}
         </div>
       )}
-
-      {/* Gallery */}
-      {gallery && <div style={{ marginTop: 8, marginBottom: 12 }}>{gallery}</div>}
 
     </div>
   );
@@ -370,7 +426,7 @@ function MilestoneLine({
         style={{
           margin: 0,
           fontFamily: "'Inter', sans-serif",
-          fontSize: 13,
+          fontSize: 14,
           lineHeight: 1.5,
           color: textColor,
           textAlign: "center",
@@ -451,76 +507,80 @@ function StaggeredGroup({
 export function JourneyTab({ isDark }: { isDark: boolean }) {
   const textPrimary = isDark ? "#F5F5F7" : "#1D1D1F";
   const textMuted = isDark ? "rgba(245,245,247,0.58)" : "#6E6E73";
-  const bg = isDark ? "rgba(10,10,15,0.96)" : "rgba(248,248,252,0.95)";
+  const bg = isDark ? "rgba(10,10,15,0.80)" : "rgba(248,248,252,0.80)";
 
   const timelineData: TimelineEntry[] = [
     {
       title: "2026",
       content: (
-        <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-        <Entry
-          isDark={isDark}
-          role="Full Stack Developer Intern"
-          org="Mycelia Health"
-          period="Jun 2026 – present"
-          accent={BLUE}
-          bullets={[
-            <>Building the frontend of a digital health platform using <strong>React</strong> and <strong>Redux</strong>, translating UI/UX designs, user flows, and product requirements into concrete components and functionality.</>,
-            <>Designing and iterating <strong>UI/UX</strong> flows for patient journeys, data intake, and platform interactions in close collaboration with the team.</>,
-            <>Integrating <strong>LLM APIs</strong> and <strong>agentic AI</strong> concepts to power intelligent workflows for patient data analysis, decision support, and platform automation.</>,
-            <>Driving technical planning on <strong>system architecture</strong>, integrations, and secure data handling across platform development phases.</>,
-          ]}
-          tags={[
-            "React",
-            "Redux",
-            "TypeScript",
-            "LLM APIs",
-            "UI/UX",
-            "Health Tech",
-          ]}
-        />
-        <Entry
-          isDark={isDark}
-          role="StoryLingo | AI-Powered iOS Language Learning App"
-          org="Personal Project"
-          period="Jan 2026 – present"
-          accent={GREEN}
-          bullets={[
-            <>Building a <strong>SwiftUI</strong>-based iOS app that turns language learning into interactive story-driven conversations, where the user can speak, type, listen, and respond inside a living narrative instead of completing static exercises.</>,
-            <>Designed the app around a full end-to-end learner journey: onboarding, story creation, conversation flow, response suggestions, translation support, <strong>text-to-speech</strong> playback, <strong>speech input</strong>, progress tracking, and persistent story history.</>,
-            <>Implemented a structured <strong>Core Data</strong> model with <strong>MVVM</strong> architecture for stories, messages, settings, and learner preferences, with a strong focus on keeping the architecture scalable.</>,
-            <>Integrated <strong>OpenAI</strong>-powered generation for story progression, dialogue, image creation, and language assistance. Currently optimising for reducing <strong>token usage</strong> and building a <strong>payment model</strong> for the app.</>,
-            <>Working towards <strong>App Store</strong> release while refining the UI in SwiftUI, testing different interaction patterns, shaping message components, and improving the balance between immersion, clarity, and learning value.</>,
-          ]}
-          gallery={
-            <GalleryButton
+        <StaggeredGroup isDark={isDark}>
+          {[
+            <Entry
+              key="mycelia"
               isDark={isDark}
-              images={[
-                { src: "/screenshots/storylingo/1.png", alt: "Home screen", caption: "Home", description: "Browse stories and start new adventures" },
-                { src: "/screenshots/storylingo/2.png", alt: "New story", caption: "New Story", description: "Create a story with custom settings" },
-                { src: "/screenshots/storylingo/3.png", alt: "New story", caption: "Story Setup", description: "Set title, genre, theme and place" },
-                { src: "/screenshots/storylingo/4.png", alt: "Response Suggestions", caption: "Response Suggestions", description: "AI-generated replies in different randomly selected tones / moods." },
-                { src: "/screenshots/storylingo/5.png", alt: "Conversation", caption: "Conversation", description: "Interactive story-driven dialogue with translation in your native langauge. AI response with voice and in text for better learning experience." },
-                { src: "/screenshots/storylingo/6.png", alt: "Translation", caption: "Translation", description: "Inline translation assistance" },
-                { src: "/screenshots/storylingo/7.png", alt: "Story details", caption: "Story details", description: "Review and resume past stories" },
-                { src: "/screenshots/storylingo/8.png", alt: "Story list", caption: "Story List", description: "All your story history in one place" },
-                { src: "/screenshots/storylingo/9.png", alt: "Stats", caption: "Stats", description: "Learning progress and AI-powered insights" },
-                { src: "/screenshots/storylingo/10.png", alt: "Settings", caption: "Settings", description: "Customize your experience" },
-                { src: "/screenshots/storylingo/11.png", alt: "Languages", caption: "Languages", description: "Pick your native and target language" },
+              role="Full Stack Developer Intern"
+              org="Mycelia Health"
+              period="Jun 2026 – present"
+              accent={BLUE}
+              bullets={[
+                <>Building the frontend of a digital health platform using <strong>React</strong> and <strong>Redux</strong>, translating UI/UX designs, user flows, and product requirements into concrete components and functionality.</>,
+                <>Designing and iterating <strong>UI/UX</strong> flows for patient journeys, data intake, and platform interactions in close collaboration with the team.</>,
+                <>Integrating <strong>LLM APIs</strong> and <strong>agentic AI</strong> concepts to power intelligent workflows for patient data analysis, decision support, and platform automation.</>,
+                <>Driving technical planning on <strong>system architecture</strong>, integrations, and secure data handling across platform development phases.</>,
               ]}
-            />
-          }
-          tags={[
-            "SwiftUI",
-            "OpenAI API",
-            "Core Data",
-            "MVVM",
-            "Speech Recognition",
-            "Text-to-Speech",
-            "Prompt Engineering",
+              tags={[
+                "React",
+                "Redux",
+                "TypeScript",
+                "LLM APIs",
+                "UI/UX",
+                "Health Tech",
+              ]}
+            />,
+            <Entry
+              key="storylingo"
+              isDark={isDark}
+              role="StoryLingo | AI-Powered iOS Language Learning App"
+              org="Personal Project"
+              period="Jan 2026 – present"
+              accent={GREEN}
+              bullets={[
+                <>Building a <strong>SwiftUI</strong>-based iOS app that turns language learning into interactive story-driven conversations, where the user can speak, type, listen, and respond inside a living narrative instead of completing static exercises.</>,
+                <>Designed the app around a full end-to-end learner journey: onboarding, story creation, conversation flow, response suggestions, translation support, <strong>text-to-speech</strong> playback, <strong>speech input</strong>, progress tracking, and persistent story history.</>,
+                <>Implemented a structured <strong>Core Data</strong> model with <strong>MVVM</strong> architecture for stories, messages, settings, and learner preferences, with a strong focus on keeping the architecture scalable.</>,
+                <>Integrated <strong>OpenAI</strong>-powered generation for story progression, dialogue, image creation, and language assistance. Currently optimising for reducing <strong>token usage</strong> and building a <strong>payment model</strong> for the app.</>,
+                <>Working towards <strong>App Store</strong> release while refining the UI in SwiftUI, testing different interaction patterns, shaping message components, and improving the balance between immersion, clarity, and learning value.</>,
+              ]}
+              gallery={
+                <GalleryButton
+                  isDark={isDark}
+                  images={[
+                    { src: "/screenshots/storylingo/1.png", alt: "Home screen", caption: "Home", description: "Browse stories and start new adventures" },
+                    { src: "/screenshots/storylingo/2.png", alt: "New story", caption: "New Story", description: "Create a story with custom settings" },
+                    { src: "/screenshots/storylingo/3.png", alt: "New story", caption: "Story Setup", description: "Set title, genre, theme and place" },
+                    { src: "/screenshots/storylingo/4.png", alt: "Response Suggestions", caption: "Response Suggestions", description: "AI-generated replies in different randomly selected tones / moods." },
+                    { src: "/screenshots/storylingo/5.png", alt: "Conversation", caption: "Conversation", description: "Interactive story-driven dialogue with translation in your native langauge. AI response with voice and in text for better learning experience." },
+                    { src: "/screenshots/storylingo/6.png", alt: "Translation", caption: "Translation", description: "Inline translation assistance" },
+                    { src: "/screenshots/storylingo/7.png", alt: "Story details", caption: "Story details", description: "Review and resume past stories" },
+                    { src: "/screenshots/storylingo/8.png", alt: "Story list", caption: "Story List", description: "All your story history in one place" },
+                    { src: "/screenshots/storylingo/9.png", alt: "Stats", caption: "Stats", description: "Learning progress and AI-powered insights" },
+                    { src: "/screenshots/storylingo/10.png", alt: "Settings", caption: "Settings", description: "Customize your experience" },
+                    { src: "/screenshots/storylingo/11.png", alt: "Languages", caption: "Languages", description: "Pick your native and target language" },
+                  ]}
+                />
+              }
+              tags={[
+                "SwiftUI",
+                "OpenAI API",
+                "Core Data",
+                "MVVM",
+                "Speech Recognition",
+                "Text-to-Speech",
+                "Prompt Engineering",
+              ]}
+            />,
           ]}
-        />
-        </div>
+        </StaggeredGroup>
       ),
     },
 
@@ -557,6 +617,8 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
                 <GalleryButton
                   isDark={isDark}
                   images={[
+                    { src: "/screenshots/aftaler/thumb1.png", alt: "App overview", caption: "Overview", description: "Key screens of the app" },
+                    { src: "/screenshots/aftaler/thumb2.png", alt: "App features", caption: "Features", description: "Core functionality and design" },
                     { src: "/screenshots/aftaler/1_onboarding.png", alt: "Onboarding flow", caption: "Onboarding", description: "First-time setup with phone authentication and welcome" },
                     { src: "/screenshots/aftaler/2_1_home_and_calendar.png", alt: "Home and calendar views", caption: "Home & Calendar", description: "Dashboard and appointment calendar" },
                     { src: "/screenshots/aftaler/2_2_dark_mode.png", alt: "Dark mode", caption: "Dark Mode", description: "Full dark mode support" },
@@ -790,6 +852,7 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
               accent={GREEN}
               links={[
                 { url: "https://apps.apple.com/dk/app/vendee-virtual-vending-kiosk/id6446119022?l=da", label: "See on App Store", type: "appstore" },
+                { url: "https://play.google.com/store/apps/details?id=com.vendeeLLC.vendee", label: "See on Google Play", type: "googleplay" },
                 { url: "https://www.youtube.com/watch?v=pk6S5jtLzec", label: "See video demonstration (old)", type: "youtube" },
               ]}
               bullets={[
@@ -881,7 +944,7 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
             style={{
               fontFamily: "'Raleway', sans-serif",
               fontWeight: 600,
-              fontSize: 28,
+              fontSize: 29,
               color: textPrimary,
               margin: 0,
               letterSpacing: "-0.02em",
@@ -897,7 +960,7 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
           transition={{ duration: 0.4, delay: 0.06 }}
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 14,
+            fontSize: 15,
             lineHeight: 1.6,
             color: textMuted,
             margin: "0 0 32px 15px",
@@ -928,7 +991,7 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
                 color,
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
-                fontSize: 11,
+                fontSize: 12,
               }}
             >
               <span

@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Images, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Iphone } from "@/components/ui/iphone";
 
 interface GalleryImage {
   src: string;
@@ -24,63 +25,87 @@ export function GalleryButton({
   label = "View gallery",
 }: GalleryButtonProps) {
   const [open, setOpen] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
 
-  const bg = isDark ? "rgba(94,80,232,0.15)" : "rgba(94,80,232,0.08)";
-  const border = isDark ? "rgba(94,80,232,0.30)" : "rgba(94,80,232,0.22)";
-  const color = isDark ? "#B8AFFF" : "#5E50E8";
-  const hoverBg = isDark ? "rgba(94,80,232,0.25)" : "rgba(94,80,232,0.14)";
+  const previews = images.slice(0, 2);
+  const remaining = images.length - 2;
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-        <button
-          onClick={() => setOpen(true)}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "11px 28px",
-            borderRadius: 999,
-            background: bg,
-            border: `1px solid ${border}`,
-            color,
-            fontFamily: "'Raleway', sans-serif",
-            fontWeight: 600,
-            fontSize: 14,
-            cursor: "pointer",
-            transition: "background 0.2s, border-color 0.2s, transform 0.15s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = hoverBg;
-            e.currentTarget.style.transform = "scale(1.03)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = bg;
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          <Images size={18} />
-          <span>{label}</span>
-          <span
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              fontSize: 12,
-              opacity: 0.7,
-              background: isDark ? "rgba(255,255,255,0.08)" : "rgba(94,80,232,0.10)",
-              padding: "2px 8px",
-              borderRadius: 999,
-            }}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 20,
+        }}
+      >
+        {previews.map((img, i) => (
+          <div
+            key={img.src}
+            onClick={(e) => { e.stopPropagation(); setStartIndex(i); setOpen(true); }}
+            className="cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-2"
+            style={{ width: 210, flexShrink: 0 }}
           >
-            {images.length}
-          </span>
-        </button>
+            <Iphone src={img.src} />
+          </div>
+        ))}
+
+        {/* +X remaining phone */}
+        {remaining > 0 && (
+          <div
+            onClick={(e) => { e.stopPropagation(); setStartIndex(2); setOpen(true); }}
+            className="cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-2"
+            style={{ width: 210, flexShrink: 0, position: "relative" }}
+          >
+            <Iphone />
+            <div
+              style={{
+                position: "absolute",
+                top: "4.4%",
+                left: "4.9%",
+                width: "90%",
+                height: "95.6%",
+                borderRadius: "12.8% / 6.3%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 6,
+                zIndex: 1,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 26,
+                  color: "rgba(255,255,255,0.85)",
+                }}
+              >
+                +{remaining}
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  fontSize: 12,
+                  color: "rgba(255,255,255,0.50)",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                more
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       <GalleryLightbox
         images={images}
         open={open}
         onClose={() => setOpen(false)}
+        initialIndex={startIndex}
       />
     </>
   );
@@ -90,10 +115,12 @@ function GalleryLightbox({
   images,
   open,
   onClose,
+  initialIndex = 0,
 }: {
   images: GalleryImage[];
   open: boolean;
   onClose: () => void;
+  initialIndex?: number;
 }) {
   const [index, setIndex] = useState(0);
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
@@ -110,10 +137,10 @@ function GalleryLightbox({
     setIndex((i) => (i < images.length - 1 ? i + 1 : 0));
   }, [images.length]);
 
-  // Reset index when opening
+  // Set index when opening
   useEffect(() => {
-    if (open) setIndex(0);
-  }, [open]);
+    if (open) setIndex(initialIndex);
+  }, [open, initialIndex]);
 
   // Keyboard nav + body scroll lock
   useEffect(() => {

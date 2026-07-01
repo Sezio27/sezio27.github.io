@@ -63,7 +63,7 @@ export const Timeline = ({ data, isDark = false }: TimelineProps) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex items-start justify-start gap-6 pt-12 md:gap-40 md:pt-20"
+            className="flex items-start justify-start gap-6 pt-20 md:gap-40 md:pt-32"
           >
             {/* Left: sticky year rail */}
             <div className="sticky top-28 z-40 self-start w-[110px] shrink-0 md:w-[170px] lg:w-[210px]">
