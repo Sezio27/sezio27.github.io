@@ -95,7 +95,7 @@ export function BioTab({ isDark }: BioTabProps) {
               borderRadius: "16px",
               border: `1px solid ${border}`,
               boxShadow: shadow,
-              padding: "20px 16px",
+              padding: "28px 32px",
               display: "flex",
               gap: "20px",
             }}

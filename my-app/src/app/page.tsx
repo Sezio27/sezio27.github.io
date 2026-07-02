@@ -189,7 +189,7 @@ export default function Page() {
           }}
         >
           {/* Left: JJ logo + name */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
             <div
               style={{
                 width: "30px",
@@ -215,7 +215,6 @@ export default function Page() {
               </span>
             </div>
             <span
-              className="header-name"
               style={{
                 fontFamily: "'Raleway', sans-serif",
                 fontWeight: 600,
@@ -228,8 +227,8 @@ export default function Page() {
             </span>
             {/* Available dot */}
             <div
-              className="hidden sm:flex"
               style={{
+                display: "flex",
                 alignItems: "center",
                 gap: "5px",
               }}
@@ -250,7 +249,9 @@ export default function Page() {
                   fontSize: "10px",
                   color: "#22C55E",
                   fontWeight: 500,
+                  display: "none",
                 }}
+                className="sm:inline"
               >
                 Open to opportunities
               </span>
@@ -259,7 +260,6 @@ export default function Page() {
 
           {/* Center: Pill tabs */}
           <div
-            className="header-pill-tabs"
             style={{
               display: "flex",
               alignItems: "center",

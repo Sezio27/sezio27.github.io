@@ -99,7 +99,6 @@ function Entry({
     >
       {/* Header */}
       <div
-        className="entry-header"
         style={{
           display: "flex",
           alignItems: "flex-start",
@@ -477,7 +476,6 @@ function StaggeredGroup({
       {children.map((child, i) => (
         <motion.div
           key={i}
-          className="stagger-item"
           initial={{ opacity: 0, x: xFromFor(i) }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
