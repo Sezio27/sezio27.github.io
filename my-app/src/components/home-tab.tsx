@@ -697,7 +697,7 @@ export function HomeTab({ isDark, onNavigate }: HomeTabProps) {
                 background: isDark
                   ? "linear-gradient(135deg, rgba(94,80,232,0.18) 0%, rgba(56,189,248,0.12) 100%)"
                   : "linear-gradient(135deg, rgba(94,80,232,0.10) 0%, rgba(56,189,248,0.06) 100%)",
-                color: isDark ? "#C4BDFF" : "#5E50E8",
+                color: isDark ? "#FF6B6B" : "#E63946",
                 border: `1px solid ${isDark ? "rgba(139,126,255,0.20)" : "rgba(94,80,232,0.15)"}`,
                 cursor: "pointer",
                 backdropFilter: "blur(12px)",
