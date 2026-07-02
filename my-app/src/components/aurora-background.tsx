@@ -53,9 +53,9 @@ void main() {
   vec4 o = vec4(0.);
   float f = 2.0 + fbm(p + vec2(iTime * 5.0, 0.0)) * 0.5;
 
-  for (float i = 0.; i++ < 35.;) {
+  for (float i = 0.; i++ < 20.;) {
     vec2 v = p + cos(i * i + (iTime + p.x * 0.08) * 0.025 + i * vec2(13., 11.)) * 3.5;
-    float tailNoise = fbm(v + vec2(iTime * 0.5, i)) * 0.3 * (1.0 - (i / 35.0));
+    float tailNoise = fbm(v + vec2(iTime * 0.5, i)) * 0.3 * (1.0 - (i / 20.0));
     vec4 auroraColors = vec4(
       0.1 + 0.3 * sin(i * 0.2 + iTime * 0.4),
       0.3 + 0.5 * cos(i * 0.3 + iTime * 0.5),
@@ -63,7 +63,7 @@ void main() {
       1.0
     );
     vec4 currentContribution = auroraColors * exp(sin(i * i + iTime * 0.8)) / length(max(v, vec2(v.x * f * 0.015, v.y * 1.5)));
-    float thinnessFactor = smoothstep(0., 1., i / 35.) * 0.6;
+    float thinnessFactor = smoothstep(0., 1., i / 20.) * 0.6;
     o += currentContribution * (1.0 + tailNoise * 0.8) * thinnessFactor;
   }
 
@@ -81,7 +81,7 @@ export function AuroraBackground({ isDark }: AuroraBackgroundProps) {
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.domElement.style.position = "fixed";
     renderer.domElement.style.top = "0";
@@ -118,16 +118,20 @@ export function AuroraBackground({ isDark }: AuroraBackgroundProps) {
     };
     window.addEventListener("resize", onResize);
 
-    // Animation loop
+    // Animation loop — throttled to 30fps
     let rafId: number;
     const startTime = performance.now();
+    const frameInterval = 1000 / 30;
+    let lastFrameTime = 0;
 
-    const animate = () => {
+    const animate = (now: number) => {
       rafId = requestAnimationFrame(animate);
-      uniforms.iTime.value = (performance.now() - startTime) * 0.001;
+      if (now - lastFrameTime < frameInterval) return;
+      lastFrameTime = now;
+      uniforms.iTime.value = (now - startTime) * 0.001;
       renderer.render(scene, camera);
     };
-    animate();
+    rafId = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(rafId);

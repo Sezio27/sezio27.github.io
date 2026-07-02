@@ -293,3 +293,67 @@
 .track-draw {
   transform-origin: 0% 50%;
 }
+
+/* ── Responsive header ── */
+@media (max-width: 639px) {
+  .header-name {
+    display: none;
+  }
+  .header-pill-tabs {
+    padding: 2px !important;
+  }
+  .header-pill-tabs button {
+    padding: 4px 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* ── Journey: disable stagger offsets on mobile ── */
+@media (max-width: 767px) {
+  .stagger-item {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* ── Gallery: stack phones vertically on small screens ── */
+@media (max-width: 639px) {
+  .gallery-previews {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  .gallery-previews > div {
+    width: 160px !important;
+  }
+}
+
+/* ── Journey entry header: stack on mobile ── */
+@media (max-width: 639px) {
+  .entry-header {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .entry-header > div:last-child {
+    align-items: flex-start !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+}
+
+/* ── Lightbox: stack image + caption vertically on mobile ── */
+@media (max-width: 767px) {
+  .lightbox-content {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .lightbox-content img {
+    max-width: 88vw !important;
+    max-height: 60vh !important;
+  }
+  .lightbox-caption {
+    max-width: 88vw !important;
+    text-align: center !important;
+  }
+}
