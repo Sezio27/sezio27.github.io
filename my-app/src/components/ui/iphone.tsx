@@ -132,7 +132,7 @@ export function Iphone({
             src={src}
             alt=""
             className="block size-full object-cover object-top"
-            loading="eager"
+            loading="lazy"
           />
         </div>
       )}

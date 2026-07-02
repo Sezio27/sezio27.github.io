@@ -557,17 +557,17 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
                 <GalleryButton
                   isDark={isDark}
                   images={[
-                    { src: "/screenshots/storylingo/1.png", alt: "Home screen", caption: "Home", description: "Browse stories and start new adventures" },
-                    { src: "/screenshots/storylingo/2.png", alt: "New story", caption: "New Story", description: "Create a story with custom settings" },
-                    { src: "/screenshots/storylingo/3.png", alt: "New story", caption: "Story Setup", description: "Set title, genre, theme and place" },
-                    { src: "/screenshots/storylingo/4.png", alt: "Response Suggestions", caption: "Response Suggestions", description: "AI-generated replies in different randomly selected tones / moods." },
-                    { src: "/screenshots/storylingo/5.png", alt: "Conversation", caption: "Conversation", description: "Interactive story-driven dialogue with translation in your native langauge. AI response with voice and in text for better learning experience." },
-                    { src: "/screenshots/storylingo/6.png", alt: "Translation", caption: "Translation", description: "Inline translation assistance" },
-                    { src: "/screenshots/storylingo/7.png", alt: "Story details", caption: "Story details", description: "Review and resume past stories" },
-                    { src: "/screenshots/storylingo/8.png", alt: "Story list", caption: "Story List", description: "All your story history in one place" },
-                    { src: "/screenshots/storylingo/9.png", alt: "Stats", caption: "Stats", description: "Learning progress and AI-powered insights" },
-                    { src: "/screenshots/storylingo/10.png", alt: "Settings", caption: "Settings", description: "Customize your experience" },
-                    { src: "/screenshots/storylingo/11.png", alt: "Languages", caption: "Languages", description: "Pick your native and target language" },
+                    { src: "/screenshots/storylingo/1.webp", alt: "Home screen", caption: "Home", description: "Browse stories and start new adventures" },
+                    { src: "/screenshots/storylingo/2.webp", alt: "New story", caption: "New Story", description: "Create a story with custom settings" },
+                    { src: "/screenshots/storylingo/3.webp", alt: "New story", caption: "Story Setup", description: "Set title, genre, theme and place" },
+                    { src: "/screenshots/storylingo/4.webp", alt: "Response Suggestions", caption: "Response Suggestions", description: "AI-generated replies in different randomly selected tones / moods." },
+                    { src: "/screenshots/storylingo/5.webp", alt: "Conversation", caption: "Conversation", description: "Interactive story-driven dialogue with translation in your native langauge. AI response with voice and in text for better learning experience." },
+                    { src: "/screenshots/storylingo/6.webp", alt: "Translation", caption: "Translation", description: "Inline translation assistance" },
+                    { src: "/screenshots/storylingo/7.webp", alt: "Story details", caption: "Story details", description: "Review and resume past stories" },
+                    { src: "/screenshots/storylingo/8.webp", alt: "Story list", caption: "Story List", description: "All your story history in one place" },
+                    { src: "/screenshots/storylingo/9.webp", alt: "Stats", caption: "Stats", description: "Learning progress and AI-powered insights" },
+                    { src: "/screenshots/storylingo/10.webp", alt: "Settings", caption: "Settings", description: "Customize your experience" },
+                    { src: "/screenshots/storylingo/11.webp", alt: "Languages", caption: "Languages", description: "Pick your native and target language" },
                   ]}
                 />
               }
@@ -619,16 +619,16 @@ export function JourneyTab({ isDark }: { isDark: boolean }) {
                 <GalleryButton
                   isDark={isDark}
                   images={[
-                    { src: "/screenshots/aftaler/thumb1.png", alt: "App overview", caption: "Overview", description: "Key screens of the app" },
-                    { src: "/screenshots/aftaler/thumb2.png", alt: "App features", caption: "Features", description: "Core functionality and design" },
-                    { src: "/screenshots/aftaler/1_onboarding.png", alt: "Onboarding flow", caption: "Onboarding", description: "First-time setup with phone authentication and welcome" },
-                    { src: "/screenshots/aftaler/2_1_home_and_calendar.png", alt: "Home and calendar views", caption: "Home & Calendar", description: "Dashboard and appointment calendar" },
-                    { src: "/screenshots/aftaler/2_2_dark_mode.png", alt: "Dark mode", caption: "Dark Mode", description: "Full dark mode support" },
-                    { src: "/screenshots/aftaler/3_finance_and_history.png", alt: "Finance and history", caption: "Finance & History", description: "Financial overview and records" },
-                    { src: "/screenshots/aftaler/4_services_and_checklists.png", alt: "Services and checklists", caption: "Services & Checklists", description: "Manage services and task lists" },
-                    { src: "/screenshots/aftaler/5_new_appointment.png", alt: "New appointment flow", caption: "New Appointment", description: "Create appointments step by step" },
-                    { src: "/screenshots/aftaler/6_view_and_edit_appointment.png", alt: "View and edit appointment", caption: "View & Edit Appointment", description: "Appointment details and editing" },
-                    { src: "/screenshots/aftaler/7_settings_and_clients.png", alt: "Settings and clients", caption: "Settings & Clients", description: "App settings and client management" },
+                    { src: "/screenshots/aftaler/thumb1.webp", alt: "App overview", caption: "Overview", description: "Key screens of the app" },
+                    { src: "/screenshots/aftaler/thumb2.webp", alt: "App features", caption: "Features", description: "Core functionality and design" },
+                    { src: "/screenshots/aftaler/1_onboarding.webp", alt: "Onboarding flow", caption: "Onboarding", description: "First-time setup with phone authentication and welcome" },
+                    { src: "/screenshots/aftaler/2_1_home_and_calendar.webp", alt: "Home and calendar views", caption: "Home & Calendar", description: "Dashboard and appointment calendar" },
+                    { src: "/screenshots/aftaler/2_2_dark_mode.webp", alt: "Dark mode", caption: "Dark Mode", description: "Full dark mode support" },
+                    { src: "/screenshots/aftaler/3_finance_and_history.webp", alt: "Finance and history", caption: "Finance & History", description: "Financial overview and records" },
+                    { src: "/screenshots/aftaler/4_services_and_checklists.webp", alt: "Services and checklists", caption: "Services & Checklists", description: "Manage services and task lists" },
+                    { src: "/screenshots/aftaler/5_new_appointment.webp", alt: "New appointment flow", caption: "New Appointment", description: "Create appointments step by step" },
+                    { src: "/screenshots/aftaler/6_view_and_edit_appointment.webp", alt: "View and edit appointment", caption: "View & Edit Appointment", description: "Appointment details and editing" },
+                    { src: "/screenshots/aftaler/7_settings_and_clients.webp", alt: "Settings and clients", caption: "Settings & Clients", description: "App settings and client management" },
                   ]}
                 />
               }

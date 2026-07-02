@@ -50,11 +50,12 @@ export const Timeline = ({ data, isDark = false }: TimelineProps) => {
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
-  // Theme tokens
+  // Theme tokens — dot and year match the purple of the scroll progress line
+  const timelinePurple = "#A855F7";
   const dotRingBg = isDark ? "#0a0a0f" : "#ffffff";
-  const dotInnerBg = isDark ? "rgba(255,255,255,0.12)" : "#E5E5EA";
-  const dotBorder = isDark ? "rgba(255,255,255,0.18)" : "#D1D1D6";
-  const yearColor = isDark ? "rgba(245,245,247,0.12)" : "rgba(0,0,0,0.09)";
+  const dotInnerBg = timelinePurple;
+  const dotBorder = isDark ? "rgba(168,85,247,0.45)" : "rgba(168,85,247,0.35)";
+  const yearColor = timelinePurple;
   const trackBg = isDark ? "rgba(255,255,255,0.08)" : "#E5E5EA";
 
   return (

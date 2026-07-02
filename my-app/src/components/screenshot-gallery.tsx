@@ -19,6 +19,9 @@ interface GalleryButtonProps {
   label?: string;
 }
 
+// Small preview variant generated alongside each full-size WebP
+const previewSrc = (src: string) => src.replace(/\.webp$/, "-sm.webp");
+
 export function GalleryButton({
   isDark,
   images,
@@ -48,7 +51,7 @@ export function GalleryButton({
             className="cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-2"
             style={{ width: 210, flexShrink: 0 }}
           >
-            <Iphone src={img.src} />
+            <Iphone src={previewSrc(img.src)} />
           </div>
         ))}
 
@@ -124,6 +127,8 @@ function GalleryLightbox({
   initialIndex?: number;
 }) {
   const [index, setIndex] = useState(0);
+  // -1 = navigating backwards, 1 = forwards; drives the slide direction
+  const [direction, setDirection] = useState(0);
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -131,17 +136,31 @@ function GalleryLightbox({
   }, []);
 
   const prev = useCallback(() => {
+    setDirection(-1);
     setIndex((i) => (i > 0 ? i - 1 : images.length - 1));
   }, [images.length]);
 
   const next = useCallback(() => {
+    setDirection(1);
     setIndex((i) => (i < images.length - 1 ? i + 1 : 0));
   }, [images.length]);
 
   // Set index when opening
   useEffect(() => {
-    if (open) setIndex(initialIndex);
+    if (open) {
+      setDirection(0);
+      setIndex(initialIndex);
+    }
   }, [open, initialIndex]);
+
+  // Preload neighbouring images so navigation is instant
+  useEffect(() => {
+    if (!open) return;
+    [index - 1, index + 1].forEach((i) => {
+      const img = images[(i + images.length) % images.length];
+      if (img) new Image().src = img.src;
+    });
+  }, [open, index, images]);
 
   // Keyboard nav + body scroll lock
   useEffect(() => {
@@ -217,13 +236,21 @@ function GalleryLightbox({
             <X size={20} />
           </button>
 
-          {/* Image + info panel */}
+          {/* Image + info panel — slides in the direction of navigation */}
+          <AnimatePresence mode="popLayout" custom={direction} initial={false}>
           <motion.div
             key={index}
             className="lightbox-content"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            custom={direction}
+            variants={{
+              enter: (dir: number) => ({ opacity: 0, x: dir * 72, scale: 0.96 }),
+              center: { opacity: 1, x: 0, scale: 1 },
+              exit: (dir: number) => ({ opacity: 0, x: dir * -72, scale: 0.96 }),
+            }}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
             style={{
               display: "flex",
@@ -291,6 +318,7 @@ function GalleryLightbox({
               </div>
             )}
           </motion.div>
+          </AnimatePresence>
 
           {/* Left arrow */}
           {images.length > 1 && (

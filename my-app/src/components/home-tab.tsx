@@ -272,7 +272,9 @@ function WorkRow({ item, isDark, index }: { item: WorkItem; isDark: boolean; ind
       whileHover={{ y: -2, transition: { duration: 0.15 } }}
       style={{
         background: cardBg,
-        border: `1px solid ${cardBorder}`,
+        borderTop: `1px solid ${cardBorder}`,
+        borderRight: `1px solid ${cardBorder}`,
+        borderBottom: `1px solid ${cardBorder}`,
         borderLeft: `3px solid ${item.accent}`,
         borderRadius: "12px",
         padding: "20px 24px",
