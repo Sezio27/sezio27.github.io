@@ -33,6 +33,7 @@ export function GalleryButton({
   return (
     <>
       <div
+        className="gallery-previews"
         style={{
           display: "flex",
           alignItems: "center",
@@ -219,6 +220,7 @@ function GalleryLightbox({
           {/* Image + info panel */}
           <motion.div
             key={index}
+            className="lightbox-content"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
@@ -250,6 +252,7 @@ function GalleryLightbox({
             />
             {(current.caption || current.description) && (
               <div
+                className="lightbox-caption"
                 style={{
                   display: "flex",
                   flexDirection: "column",
